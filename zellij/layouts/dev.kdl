@@ -1,0 +1,24 @@
+// ~/.config/zellij/layouts/dev.kdl
+layout {
+  // Optional: give the session a stable name
+  // session_name "dev"
+
+  // Use the directory you launch from as the working dir
+  cwd "."
+
+  tab name="term" {
+    pane  // plain shell
+  }
+
+  tab name="nvim" {
+    pane command="nvim"
+  }
+
+  tab name="claude" {
+    // Try to start "claude code"; if not installed, show a hint then drop to a shell
+    pane command="bash" {
+      args "-lc" "if command -v claude >/dev/null 2>&1; then claude code; else echo 'Claude CLI not found. Install it (e.g., brew install anthropic/anthropic/claude or pipx install anthropic), then run: claude code'; exec $SHELL; fi"
+    }
+  }
+}
+

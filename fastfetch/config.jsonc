@@ -1,0 +1,35 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+
+  // --- Logo: built-in Apple (ASCII) ---
+  "logo": {
+    "type": "builtin",          // or "small" for compact
+    "source": "macos",          // try "macos_small" if you prefer the tiny one
+    "padding": { "right": 2 }
+  },
+
+  // --- Display polish ---
+  "display": {
+    "separator": "  ",
+    "key": { "width": 12 }      // align the labels
+  },
+
+  // --- Modules you’ll see under the logo ---
+  "modules": [
+    "title", "separator",
+    { "type": "os",          "key": "OS" },
+    { "type": "host",        "key": "Model" },
+    { "type": "kernel",      "key": "Kernel" },
+    { "type": "uptime",      "key": "Uptime" },
+    { "type": "shell",       "key": "Shell" },
+    { "type": "terminalfont","key": "Term Font" },
+    { "type": "cpu",         "key": "CPU", "format": "{name} ({cores-physical}C/{cores-logical}T)" },
+    { "type": "gpu",         "key": "GPU" },
+    { "type": "memory",      "key": "Memory",
+      "percent": { "type": 3, "green": 30, "yellow": 70 } // number + bar + color thresholds
+    },
+    { "type": "disk",        "key": "Disk", "format": "{free} free / {used} used / {size} total" },
+    { "type": "battery",     "key": "Battery" },
+    "colors"
+  ]
+}

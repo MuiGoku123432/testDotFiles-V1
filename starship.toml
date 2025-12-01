@@ -1,0 +1,69 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+add_newline = true
+
+# Two-line prompt: meta on line 1, prompt char on line 2
+format = """
+[╭](bold) $directory$git_branch$git_status$package$nodejs$python$rust$golang$docker_context$kubernetes$terraform$aws$gcloud
+[╰](bold) $character"""
+right_format = "$time$cmd_duration$memory_usage"
+
+[character]
+success_symbol = "[❯](bold)"
+error_symbol   = "[❯](bold red)"
+vimcmd_symbol  = "[❮](bold)"
+
+[directory]
+style = "bold"
+truncation_length = 3
+truncate_to_repo = true
+fish_style_pwd_dir_length = 1
+read_only = " 󰌾"
+
+[git_branch]
+symbol = " "
+truncation_length = 28
+truncation_symbol = "…"
+
+[git_status]
+conflicted = "[󰀥](bold red) "
+ahead     = "⇡${count} "
+behind    = "⇣${count} "
+diverged  = "⇕${ahead_count}⇣${behind_count} "
+stashed   = "📦 "
+modified  = "✚${count} "
+staged    = "●${count} "
+renamed   = "»${count} "
+deleted   = "✖${count} "
+untracked = "…${count} "
+format    = '([$all_status$ahead_behind]($style))'
+style     = "bold"
+
+[nodejs]
+format = "via [ $version]($style) "
+detect_files = ["package.json", ".node-version", ".nvmrc"]
+
+[python]
+format = "via [ $version]($style) "
+python_binary = "python3"
+detect_files = ["pyproject.toml", "requirements.txt", ".python-version", "Pipfile"]
+
+[rust]
+format = "via [🦀 $version]($style) "
+
+[time]
+disabled = false
+time_format = "%H:%M"
+format = "[$time]($style) "
+style = "dim"
+
+[cmd_duration]
+min_time = 2000
+format = "[⏱ $duration]($style) "
+style = "italic dim"
+
+[memory_usage]
+disabled = false
+threshold = 80
+symbol = "󰍛 "
+format = "[$symbol$ram]($style) "
+style = "dim"
